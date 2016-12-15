@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es6",
+        "noImplicitAny": false,
+        "moduleResolution": "node",
+        "sourceMap": false,
+        "rootDir": "./src",
+        "outDir": "./dist",
+        "types": [ "node", "koa", "koa-bodyparser", "koa-router", "cookies", "chalk" ],
+        "allowJs": true
+    },
+    "include": [
+      "src/**/*.ts"
+    ],
+    "exclude": [
+      "node_modules"
+    ]
+}
