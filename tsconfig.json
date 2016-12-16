@@ -7,11 +7,12 @@
         "sourceMap": false,
         "rootDir": "./src",
         "outDir": "./dist",
-        "types": [ "node", "koa", "koa-bodyparser", "koa-router", "cookies", "chalk" ],
-        "allowJs": true
+        "allowJs": true,
+        "jsx": "react"
     },
     "include": [
-      "src/**/*.ts"
+      "src/**/*.ts",
+      "src/**/*.tsx"
     ],
     "exclude": [
       "node_modules"
