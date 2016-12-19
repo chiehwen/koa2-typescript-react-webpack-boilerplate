@@ -3,9 +3,12 @@ const webpack = require('webpack');
 const path = require('path');
 
 module.exports = {
-
-  entry: './src/index.tsx',
+  // This will be our app's entry point (webpack will look for it in the 'src' directory due to the modulesDirectory setting below).
+  entry: {
+    app: ['./src/index.tsx']
+  },
   target: 'node',
+  // Output the bundled JS to dist/bundle.js
   output: {
     path: path.join(__dirname, 'dist'),
     publicPath: '/dist/',
@@ -14,7 +17,7 @@ module.exports = {
   module: {
     rules: [
       { exclude: /node_modules/ },
-      // All files with a '.ts' extension will be handled
+      // .ts(x) files should first pass through the Typescript loader, and then through babel
       { test: /\.tsx?$/, use: [{ loader: 'ts-loader' }]},
       { test: /\.json$/, use: [{ loader: 'json-loader' }]}
     ]
@@ -22,11 +25,13 @@ module.exports = {
   // Enable sourcemaps for debugging webpack's output.
   devtool: "source-map",
   resolve: {
-    // Add '.js' and 'ts' as resolvable extensions.
-    extensions: [ '*','.js', '.ts', '.tsx' ]
+    // // Look for modules in .ts(x) files first, then .js(x)
+    extensions: [ '*', '.ts', '.tsx','.js', '.jsx' ],
+    // Add 'src' to our modules, as all our app code will live in there, so Webpack should look in there for modules.
+    modules: ['./src', '/node_modules/']
   },
   externals: {
-        "react": "React",
-        "react-dom": "ReactDOM"
+      "react": "React",
+      "react-dom": "ReactDOM"
     }
 };
