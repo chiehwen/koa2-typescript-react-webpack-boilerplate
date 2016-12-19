@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "./src/server.ts",
   "scripts": {
-    "build": "$(yarn bin)/webpack --progress --inline --color",
-    "start": "$(yarn bin)/webpack-dev-server --progress --inline --color --hot -w",
+    "build": "$(yarn bin)/webpack --progress --color",
+    "start": "$(yarn bin)/webpack-dev-server --progress --color --hot -w",
     "lint": "$(yarn bin)/tslint src/**/*.ts"
   },
   "repository": "https://github.com/chiehwen/koa2-typescript-react-webpack-boilerplate.git",
@@ -18,7 +18,6 @@
     "@types/node": "^0.0.2",
     "@types/react": "0.14.55",
     "@types/react-dom": "0.14.19",
-    "awesome-typescript-loader": "^3.0.0-beta.13",
     "json-loader": "^0.5.4",
     "ts-loader": "^1.3.2",
     "tslint": "^4.0.2",
