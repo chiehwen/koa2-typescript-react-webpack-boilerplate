@@ -16,8 +16,9 @@ module.exports = {
   },
   module: {
     rules: [
-      { exclude: /node_modules/ },
-      // .ts(x) files should first pass through the Typescript loader, and then through babel
+      { exclude: path.resolve(__dirname, '/node_modules/') },
+      { include: path.resolve(__dirname, "src") },
+      // All files with a '.ts' or '.tsx' extension will be handled by 'ts-loader'.
       { test: /\.tsx?$/, use: [{ loader: 'ts-loader' }]},
       { test: /\.json$/, use: [{ loader: 'json-loader' }]}
     ]
@@ -25,11 +26,16 @@ module.exports = {
   // Enable sourcemaps for debugging webpack's output.
   devtool: "source-map",
   resolve: {
-    // // Look for modules in .ts(x) files first, then .js(x)
+    // Add `.ts` and `.tsx` as a resolvable extension.
+    // Look for modules in .ts(x) files first, then .js(x)
     extensions: [ '*', '.ts', '.tsx','.js', '.jsx' ],
     // Add 'src' to our modules, as all our app code will live in there, so Webpack should look in there for modules.
     modules: ['./src', '/node_modules/']
   },
+  // When importing a module whose path matches one of the following, just
+  // assume a corresponding global variable exists and use that instead.
+  // This is important because it allows us to avoid bundling all of our
+  // dependencies, which allows browsers to cache those libraries between builds.
   externals: {
       "react": "React",
       "react-dom": "ReactDOM"
